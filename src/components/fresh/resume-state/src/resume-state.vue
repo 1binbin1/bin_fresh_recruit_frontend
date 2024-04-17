@@ -1,27 +1,27 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import { useResumeStore } from '@/stores/fresh/resume'
-import { useSendStore } from '@/stores/fresh/send'
-import { onMounted, ref } from 'vue'
-import { formatUTC } from '@/utils/formatTime'
+import {storeToRefs} from 'pinia'
+import {useResumeStore} from '@/stores/fresh/resume'
+import {useSendStore} from '@/stores/fresh/send'
+import {onMounted, ref} from 'vue'
+import {formatUTC} from '@/utils/formatTime'
 import router from '@/router'
-import { useJobStore } from '@/stores/fresh/job'
-import { showMsg } from '@/utils/message'
+import {useJobStore} from '@/stores/fresh/job'
+import {showMsg} from '@/utils/message'
 import localCache from '@/utils/localCache'
 import ChatWindow from '@/components/SecondPackage/chat-window'
-import { useChatStore } from '@/stores/chat/chatStore'
+import {useChatStore} from '@/stores/chat/chatStore'
 
 const sendStore = useSendStore()
-const { getStateList, changeCurrent } = sendStore
-const { stateListPage, total, pageSize, current } = storeToRefs(sendStore)
+const {getStateList, changeCurrent} = sendStore
+const {stateListPage, total, pageSize, current} = storeToRefs(sendStore)
 const jobStore = useJobStore()
-const { changeJobId, changeComId } = jobStore
-const { jobInfoResult } = storeToRefs(jobStore)
+const {changeJobId, changeComId} = jobStore
+const {jobInfoResult} = storeToRefs(jobStore)
 
 const chatWindowModal = ref<InstanceType<typeof ChatWindow>>()
 const chatStore = useChatStore()
-const { getChatList, changeComId: changeComIdByChat } = chatStore
-const { chatList, comInfo } = storeToRefs(chatStore)
+const {getChatList, changeComId: changeComIdByChat} = chatStore
+const {chatList, comInfo} = storeToRefs(chatStore)
 onMounted(async () => {
   await getStateList()
 })
@@ -59,12 +59,12 @@ const showChatWindow = async (data: any) => {
       <div class="state-list" v-for="item in stateListPage" :key="item">
         <div class="info">
           <div class="info-left" @click="gotoJobInfo(item)">
-            <div class="avatar"><img :src="item.a_avatar" alt="无图片" /></div>
+            <div class="avatar"><img :src="item.a_avatar" alt="无图片"/></div>
             <div class="job-info">
               <span style="font-size: 16px">{{ item.job_name }}</span>
               <span style="font-size: 12px; margin-top: 2px; width: 200px">{{
-                item.com_name
-              }}</span>
+                  item.com_name
+                }}</span>
             </div>
           </div>
           <div class="info-center" style="color: #000; width: 160px">
@@ -74,28 +74,31 @@ const showChatWindow = async (data: any) => {
             {{ dictMap.get(item.send_state) }}
           </div>
           <div
-            class="info-center"
-            style="width: 70px; color: rgb(48, 152, 30)"
-            v-if="item.send_state === 5"
+              class="info-center"
+              style="width: 70px; color: rgb(48, 152, 30)"
+              v-if="item.send_state === 5"
           >
             {{ dictMap.get(item.send_state) }}
           </div>
           <div
-            class="info-center"
-            style="width: 70px; color: rgb(254, 87, 103)"
-            v-if="item.send_state === 3"
+              class="info-center"
+              style="width: 70px; color: rgb(254, 87, 103)"
+              v-if="item.send_state === 3"
           >
             {{ dictMap.get(item.send_state) }}
           </div>
           <div
-            class="info-center"
-            style="width: 70px; color: rgb(254, 87, 103)"
-            v-if="item.send_state === 4"
+              class="info-center"
+              style="width: 70px; color: rgb(254, 87, 103)"
+              v-if="item.send_state === 4"
           >
             {{ dictMap.get(item.send_state) }}
           </div>
           <div class="info-right">
-            <el-button @click="showChatWindow(item)">立即沟通</el-button>
+            <el-button @click="showChatWindow(item)"
+                       style="background-color: #00a6a7;border: none;border-radius: 10px;height: 35px;width: 110px;color: #fff;font-weight: bolder;letter-spacing: 2px;font-size: 16px;">
+              立即沟通
+            </el-button>
           </div>
         </div>
         <div class="line"></div>
@@ -103,12 +106,12 @@ const showChatWindow = async (data: any) => {
     </div>
     <div class="state-bottom">
       <el-pagination
-        background
-        layout="prev,pager,next"
-        :total="total"
-        :page-size="pageSize"
-        @current-change="pageChange"
-        :current-page="current"
+          background
+          layout="prev,pager,next"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="pageChange"
+          :current-page="current"
       ></el-pagination>
     </div>
     <ChatWindow ref="chatWindowModal" :chatList="chatList" :userInfo="comInfo"></ChatWindow>
@@ -116,23 +119,6 @@ const showChatWindow = async (data: any) => {
 </template>
 
 <style lang="scss" scoped>
-:deep(.el-button) {
-  background-color: #00a6a7;
-  border: none;
-  border-radius: 10px;
-  height: 35px;
-  width: 110px;
-  color: #fff;
-  font-weight: bolder;
-  letter-spacing: 2px;
-  font-size: 16px;
-}
-
-:deep(.el-button:hover) {
-  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
-  transform: scale(1.05);
-}
-
 .line {
   width: 100%;
   height: 1px;
