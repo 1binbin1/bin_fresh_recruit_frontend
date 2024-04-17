@@ -6,7 +6,14 @@ import type {
     GetFreshListRequest,
     OutFreshDataRequest
 } from '@/service/school/type'
-import {addFreshBatch, deleteFresh, getOutFreshDataHttp, getRateData, listFresh} from '@/service/school/fresh'
+import {
+    addFreshBatch,
+    deleteFresh,
+    getFreshOutCountHttp,
+    getOutFreshDataHttp,
+    getRateData,
+    listFresh
+} from '@/service/school/fresh'
 import {showMsg} from '@/utils/message'
 
 export const useFreshStore = defineStore('fresh', () => {
@@ -70,6 +77,15 @@ export const useFreshStore = defineStore('fresh', () => {
         return await getOutFreshDataHttp(data);
     }
 
+    // 获取数据范围
+    const countRes = ref<string[]>()
+    const getCount = async () => {
+        const res = await getFreshOutCountHttp()
+        if (res.code === 0) {
+            countRes.value = res.data
+        }
+    }
+
     return {
         freshList,
         count,
@@ -80,6 +96,6 @@ export const useFreshStore = defineStore('fresh', () => {
         changeCurrent,
         addFresh,
         deleteFreshData,
-        getFreshRateData, outFreshData
+        getFreshRateData, outFreshData,countRes,getCount
     }
 })

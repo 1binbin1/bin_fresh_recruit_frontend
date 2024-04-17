@@ -61,7 +61,7 @@ const allSlots = props.tableConfig.propList.filter((item) => {
   return true
 })
 // emits
-const emits = defineEmits(['edit', 'delete', 'add', 'pageChange', 'fresh', 'batchAdd','batchOut'])
+const emits = defineEmits(['edit', 'delete', 'add', 'pageChange', 'fresh', 'batchAdd', 'batchOut'])
 // 新增按钮
 const addFn = () => {
   emits('add')
@@ -75,11 +75,11 @@ const batchAddFn = (file: any) => {
   emits('batchAdd', file)
 }
 // 数据导出
-const batchOutFn = (data: number[]) => {
-  if (data.length != 0){
-    emits('batchOut', data)
-  }else {
-    showMsg("请选择导出范围","error")
+const batchOutFn = (data: number[], count: string) => {
+  if (data.length != 0 && (count != undefined || count != "")) {
+    emits('batchOut', data, count)
+  } else {
+    showMsg("请选择导出范围和数据范围", "error")
   }
 }
 // 删除按钮
@@ -118,7 +118,7 @@ const showDataOut = () => {
       <!-- 顶部按钮处理 -->
       <template #titleHandler>
         <div class="titleHandler">
-          <el-button type="success" size="large" icon="Plus" v-if="isDataOut" @click="showDataOut"
+          <el-button type="success" size="large" icon="Download" v-if="isDataOut" @click="showDataOut"
           >数据导出
           </el-button>
           <el-button type="primary" @click="addFn()" size="large" icon="Plus" v-if="isAdd"

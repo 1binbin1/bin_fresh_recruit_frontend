@@ -11,6 +11,7 @@ import modalConfig from './config/modalConfig'
 import {useFreshStore} from '@/stores/main/school/fresh'
 import {storeToRefs} from 'pinia'
 import {useAuthStore} from "@/stores/user/auth";
+import {showMsg} from "@/utils/message";
 
 const modalRef = ref<InstanceType<typeof ModalForm>>()
 
@@ -56,11 +57,24 @@ const deleteFresh = async (value: any) => {
   await deleteFreshData(data)
 }
 // 导出数据
-const startBatchOut = async (data: number[]) => {
+const startBatchOut = async (data: number[], count: string) => {
+  const range = count.split("-");
+  let start = 1;
+  let end = 1;
+  if (range.length === 2) {
+    start = range[0]
+    end = range[1]
+  }
   // 后端接口
   const res = await outFreshData({
-    send_state: data
+    send_state: data,
+    start: start,
+    end: end
   })
+  if (res.size == 0){
+    showMsg("查询数据为空，不需要下载", "success")
+    return
+  }
   const blob = new Blob([res], {type: 'application/vnd.ms-excel'});
   const url = URL.createObjectURL(blob);
   const myDate = new Date();
@@ -72,7 +86,7 @@ const startBatchOut = async (data: number[]) => {
   document.body.appendChild(link)
   link.click();
   URL.revokeObjectURL(url);
-  console.log("下载文件",res)
+  showMsg("数据下载成功，只导出最近180的投递记录", "success")
 }
 </script>
 

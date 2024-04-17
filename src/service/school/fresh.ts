@@ -74,3 +74,12 @@ export function getOutFreshDataHttp(data: OutFreshDataRequest) {
         responseType: 'blob'
     })
 }
+
+/**
+ * @description: 数量范围
+ */
+export function getFreshOutCountHttp() {
+    return httpService.get<Idata<string[]>>({
+        url: '/school/data/count'
+    })
+}

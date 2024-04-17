@@ -4,10 +4,15 @@ import {showBox, showMsg} from "@/utils/message";
 import {defineEmits, onMounted} from "vue";
 import {useCommonStore} from "@/stores/common/common";
 import {storeToRefs} from "pinia";
+import {useFreshStore} from "@/stores/main/school/fresh";
 
 const store = useCommonStore()
 const {getdict} = store
 const {dictData} = storeToRefs(store)
+
+const freshSendStore = useFreshStore()
+const {getCount} = freshSendStore
+const {countRes} = storeToRefs(freshSendStore)
 
 const dialogVisible = ref(false)
 defineExpose({
@@ -18,21 +23,31 @@ defineExpose({
 const emits = defineEmits(['batchOut'])
 // 数据导出
 const selectData = ref([])
+const selectNum = ref("")
 const batchAddFn = () => {
-  emits('batchOut', selectData.value)
+  emits('batchOut', selectData.value,selectNum.value)
 }
 const cancel = () => {
   dialogVisible.value = false
 }
 const dicts = []
+const countSelect = []
 onMounted(async () => {
   await getdict(5)
+  await getCount()
   dictData.value.forEach((item, index) => {
     dicts.push({
       label: item,
       value: index
     })
   })
+  countRes.value.forEach((item, index) => {
+    countSelect.push({
+      label: item,
+      value: item
+    })
+  })
+  selectNum.value = countRes.value[0]
 })
 </script>
 
@@ -40,16 +55,30 @@ onMounted(async () => {
   <el-dialog v-model="dialogVisible" title="批量新增" width="40%" align-center>
     <div class="content">
       <div class="content-top">
-        <span>导出范围</span>
-        <el-select placeholder="投递状态" style="width: 300px;margin-left: 10px" v-model="selectData" clearable multiple
-        >
-          <el-option
-              v-for="item in dicts"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-          />
-        </el-select>
+        <div class="select">
+          <span>投递状态</span>
+          <el-select placeholder="投递状态选择" style="width: 300px;margin-left: 10px" v-model="selectData" clearable multiple
+          >
+            <el-option
+                v-for="item in dicts"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+            />
+          </el-select>
+        </div>
+        <div class="select">
+          <span>数量范围</span>
+          <el-select placeholder="导出数量范围" style="width: 300px;margin-left: 10px" v-model="selectNum" clearable
+          >
+            <el-option
+                v-for="item in countSelect"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+            />
+          </el-select>
+        </div>
       </div>
       <div class="content-bottom">
         <el-button class="cancel" @click="cancel">取消</el-button>
@@ -111,7 +140,15 @@ onMounted(async () => {
   letter-spacing: 4px;
 }
 
-.content-top{
+.content-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.select {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
