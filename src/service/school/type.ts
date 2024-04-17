@@ -129,3 +129,8 @@ export interface UpdateMessageVo {
 export interface OutFreshDataRequest {
     send_state: Number[]
 }
+
+export interface MapDataArray {
+    label:string
+    value:string
+}

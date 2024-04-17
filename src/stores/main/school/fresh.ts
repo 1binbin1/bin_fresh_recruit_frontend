@@ -15,6 +15,7 @@ import {
     listFresh
 } from '@/service/school/fresh'
 import {showMsg} from '@/utils/message'
+import type {MapDataArray} from "@/service/school/type";
 
 export const useFreshStore = defineStore('fresh', () => {
     const freshList = ref()
@@ -47,6 +48,7 @@ export const useFreshStore = defineStore('fresh', () => {
             // 刷新页面
             await getFreshList()
             await getFreshRateData()
+            getMap()
         } else {
             showMsg('添加失败', 'error')
         }
@@ -59,6 +61,7 @@ export const useFreshStore = defineStore('fresh', () => {
             showMsg('删除成功', 'success')
             await getFreshList()
             await getFreshRateData()
+            getMap()
         } else {
             showMsg('删除失败', 'error')
         }
@@ -86,6 +89,23 @@ export const useFreshStore = defineStore('fresh', () => {
         }
     }
 
+    const mapData = ref<[]>()
+    let dicts = []
+    const selectNum = ref<string>("")
+    const getMap = async () => {
+        await getCount()
+        mapData.value = []
+        dicts = []
+        countRes.value.forEach((item, index) => {
+            dicts.push({
+                label: item,
+                value: item
+            })
+        })
+        mapData.value = dicts
+        selectNum.value = mapData.value[0]
+    }
+
     return {
         freshList,
         count,
@@ -96,6 +116,6 @@ export const useFreshStore = defineStore('fresh', () => {
         changeCurrent,
         addFresh,
         deleteFreshData,
-        getFreshRateData, outFreshData,countRes,getCount
+        getFreshRateData, outFreshData, countRes, getCount,getMap,mapData,selectNum
     }
 })

@@ -11,8 +11,8 @@ const {getdict} = store
 const {dictData} = storeToRefs(store)
 
 const freshSendStore = useFreshStore()
-const {getCount} = freshSendStore
-const {countRes} = storeToRefs(freshSendStore)
+const {getCount,getMap} = freshSendStore
+const {countRes,mapData,selectNum} = storeToRefs(freshSendStore)
 
 const dialogVisible = ref(false)
 defineExpose({
@@ -23,7 +23,7 @@ defineExpose({
 const emits = defineEmits(['batchOut'])
 // 数据导出
 const selectData = ref([])
-const selectNum = ref("")
+// const selectNum = ref("")
 const batchAddFn = () => {
   emits('batchOut', selectData.value,selectNum.value)
 }
@@ -34,20 +34,13 @@ const dicts = []
 const countSelect = []
 onMounted(async () => {
   await getdict(5)
-  await getCount()
+  await getMap()
   dictData.value.forEach((item, index) => {
     dicts.push({
       label: item,
       value: index
     })
   })
-  countRes.value.forEach((item, index) => {
-    countSelect.push({
-      label: item,
-      value: item
-    })
-  })
-  selectNum.value = countRes.value[0]
 })
 </script>
 
@@ -72,7 +65,7 @@ onMounted(async () => {
           <el-select placeholder="导出数量范围" style="width: 300px;margin-left: 10px" v-model="selectNum" clearable
           >
             <el-option
-                v-for="item in countSelect"
+                v-for="item in mapData"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
