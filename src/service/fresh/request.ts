@@ -38,8 +38,8 @@ export function getJobInfoOneHttp(data: GetJobInfoOneRequest) {
 // 查询岗位信息-首页列表
 export function getJobListBySearchHttp(data: GetJobListRequest) {
   return httpService.post<Idata<GetJobListVo>>({
-    url: '/com/job/list/search',
-    data
+      url: '/com/job/list/search',
+      data
   })
 }
 
@@ -55,8 +55,8 @@ export function getJobListByHttp(data: GetRecommendListRequest) {
 // 修改个人信息
 export function updateUserInfoHttp(data: UpdateUserInfoRequest) {
   return httpService.post<Idata<FreshUserInfo>>({
-    url: '/fresh/info/update',
-    data
+      url: '/fresh/info/update',
+      data
   })
 }
 
@@ -72,19 +72,19 @@ export function getUserInfoHttp(data: GetFreshUserInfoRequest) {
 // 添加简历附件
 export function addResumeHttp(data: FormData) {
   return httpService.post<Idata<ResumeInfo>>({
-    url: '/fresh/resume/add',
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    },
-    data
+      url: '/fresh/resume/add',
+      headers: {
+          'Content-Type': 'multipart/form-data'
+      },
+      data
   })
 }
 
 // 删除简历附件
 export function deleteResumeHttp(data: ResumeRequest) {
   return httpService.post<Idata<string>>({
-    url: '/fresh/resume/delete',
-    data
+      url: '/fresh/resume/delete',
+      data
   })
 }
 
@@ -107,24 +107,24 @@ export function getResumeInfoHttp(data: ResumeRequest) {
 // 新增岗位意向
 export function addJobPurposeHttp(data: AddJobPurposeRequest) {
   return httpService.post<Idata<JobPurposeInfo>>({
-    url: '/fresh/purpose/add',
-    data
+      url: '/fresh/purpose/add',
+      data
   })
 }
 
 // 修改岗位意向
 export function updateJobPurposeHttp(data: UpdateJobPurposeRequest) {
   return httpService.post<Idata<JobPurposeInfo>>({
-    url: '/fresh/purpose/update',
-    data
+      url: '/fresh/purpose/update',
+      data
   })
 }
 
 // 删除岗位意向
 export function deleteJobPurposeHttp(data: JobPurposeRequest) {
   return httpService.post<Idata<number>>({
-    url: '/fresh/purpose/delete',
-    data
+      url: '/fresh/purpose/delete',
+      data
   })
 }
 
@@ -147,8 +147,8 @@ export function getJobPurposeOneHttp(data: JobPurposeRequest) {
 // 投递岗位
 export function freshSendResumeHttp(data: FreshResumeSendRequest) {
   return httpService.post<Idata<ResumeSendInfo>>({
-    url: '/fresh/resume/send',
-    data
+      url: '/fresh/resume/send',
+      data
   })
 }
 

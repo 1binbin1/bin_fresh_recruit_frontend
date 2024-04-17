@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import type {PropType, defineProps, defineEmits} from 'vue'
 import type {ItableConfig} from '@/components/base/kl-table'
-import {showBox} from "@/utils/message";
+import {showBox, showMsg} from "@/utils/message";
 import FileUpload from "@/components/base/file-upload";
 import {ref} from "vue";
-import { InfoFilled } from '@element-plus/icons-vue'
+import {InfoFilled} from '@element-plus/icons-vue'
+import DataOut from "@/components/base/data-out";
 
 const fileUploadRef = ref<InstanceType<typeof FileUpload>>()
+const dataOutRef = ref<InstanceType<typeof DataOut>>()
 
 const props = defineProps({
   tableConfig: {
@@ -44,6 +46,10 @@ const props = defineProps({
   isBatchAdd: {
     type: Boolean,
     default: false
+  },
+  isDataOut: {
+    type: Boolean,
+    default: false
   }
 })
 // slot处理
@@ -55,7 +61,7 @@ const allSlots = props.tableConfig.propList.filter((item) => {
   return true
 })
 // emits
-const emits = defineEmits(['edit', 'delete', 'add', 'pageChange', 'fresh', 'batchAdd'])
+const emits = defineEmits(['edit', 'delete', 'add', 'pageChange', 'fresh', 'batchAdd','batchOut'])
 // 新增按钮
 const addFn = () => {
   emits('add')
@@ -67,6 +73,14 @@ const editFn = (value: any) => {
 // 批量新增
 const batchAddFn = (file: any) => {
   emits('batchAdd', file)
+}
+// 数据导出
+const batchOutFn = (data: number[]) => {
+  if (data.length != 0){
+    emits('batchOut', data)
+  }else {
+    showMsg("请选择导出范围","error")
+  }
 }
 // 删除按钮
 const deleteFn = (value: any) => {
@@ -84,6 +98,11 @@ const pageFresh = () => {
 const showBatch = () => {
   fileUploadRef.value!.getVisible()
 }
+
+// 批量可视化
+const showDataOut = () => {
+  dataOutRef.value!.getVisible()
+}
 </script>
 
 <template>
@@ -99,6 +118,9 @@ const showBatch = () => {
       <!-- 顶部按钮处理 -->
       <template #titleHandler>
         <div class="titleHandler">
+          <el-button type="success" size="large" icon="Plus" v-if="isDataOut" @click="showDataOut"
+          >数据导出
+          </el-button>
           <el-button type="primary" @click="addFn()" size="large" icon="Plus" v-if="isAdd"
           >新增数据
           </el-button
@@ -108,6 +130,7 @@ const showBatch = () => {
           </el-button>
           <el-button icon="Refresh" circle style="margin-left: 20px" @click="pageFresh"/>
           <FileUpload ref="fileUploadRef" @batchAdd="batchAddFn"></FileUpload>
+          <DataOut ref="dataOutRef" @batchOut="batchOutFn"></DataOut>
         </div>
       </template>
       <!-- 时间处理 -->

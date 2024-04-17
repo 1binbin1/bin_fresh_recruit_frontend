@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import {onMounted, ref} from 'vue'
 // 组件
 import ModalForm from '@/components/SecondPackage/modal-form'
 import ContentTable from '@/components/SecondPackage/content-table'
@@ -8,14 +8,18 @@ import FreshData from '@/components/base/fresh-data'
 import tableConfig from '@/views/main/school/fresh/config/tableConfig'
 import modalConfig from './config/modalConfig'
 // 仓库
-import { useFreshStore } from '@/stores/main/school/fresh'
-import { storeToRefs } from 'pinia'
+import {useFreshStore} from '@/stores/main/school/fresh'
+import {storeToRefs} from 'pinia'
+import {useAuthStore} from "@/stores/user/auth";
 
 const modalRef = ref<InstanceType<typeof ModalForm>>()
 
 const store = useFreshStore()
-const { getFreshList, changeCurrent, addFresh: storeAddFresh, deleteFreshData } = store
-const { freshList, count, pageSize, reqData } = storeToRefs(store)
+const {getFreshList, changeCurrent, addFresh: storeAddFresh, deleteFreshData, outFreshData} = store
+const {freshList, count, pageSize, reqData} = storeToRefs(store)
+
+const authStore = useAuthStore()
+const {userInfo} = storeToRefs(authStore);
 
 // 加载数据
 onMounted(async () => {
@@ -35,7 +39,6 @@ const addFresh = async (data: any) => {
   // 处理数据
   const ids = data.fresh_ids
   const fresh_ids = ids.split(',')
-  // console.log(fresh_ids)
   const fresh_data = {
     fresh_ids
   }
@@ -52,23 +55,44 @@ const deleteFresh = async (value: any) => {
   }
   await deleteFreshData(data)
 }
+// 导出数据
+const startBatchOut = async (data: number[]) => {
+  // 后端接口
+  const res = await outFreshData({
+    send_state: data
+  })
+  const blob = new Blob([res], {type: 'application/vnd.ms-excel'});
+  const url = URL.createObjectURL(blob);
+  const myDate = new Date();
+  const fileName = userInfo.value.id + "_" + myDate.getFullYear() + myDate.getMonth() + myDate.getDate() + myDate.getHours() + myDate.getMinutes() + myDate.getSeconds() + ".xlsx";
+  const link = document.createElement('a')
+  link.href = url;
+  link.download = fileName;
+  link.style.display = "none";
+  document.body.appendChild(link)
+  link.click();
+  URL.revokeObjectURL(url);
+  console.log("下载文件",res)
+}
 </script>
 
 <template>
   <!-- 应届生管理 -->
   <div class="fresh">
-    <fresh-data />
+    <fresh-data/>
     <content-table
-      :table-config="tableConfig"
-      :table-data="freshList"
-      :total="count"
-      :is-edit="false"
-      @page-change="getFreshByPage"
-      @add="showModal"
-      :page-size="pageSize"
-      @fresh="pageFresh"
-      :current-page="reqData.current"
-      @delete="deleteFresh"
+        :table-config="tableConfig"
+        :table-data="freshList"
+        :total="count"
+        :is-edit="false"
+        @page-change="getFreshByPage"
+        @add="showModal"
+        :page-size="pageSize"
+        @fresh="pageFresh"
+        :current-page="reqData.current"
+        @delete="deleteFresh"
+        :isDataOut="true"
+        @batchOut="startBatchOut"
     >
       <template #userSex="scope">
         <el-button v-if="scope.row['user_sex'] === 0">男</el-button>

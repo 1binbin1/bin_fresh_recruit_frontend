@@ -12,8 +12,8 @@ import type { IoutLoginRequest } from './type'
  */
 export function register(data: Iregister) {
   return httpService.post<Idata<Iuser>>({
-    url: '/account/register',
-    data
+      url: '/account/register',
+      data
   })
 }
 
@@ -22,8 +22,8 @@ export function register(data: Iregister) {
  */
 export function login(data: Ilogin) {
   return httpService.post<Idata<Iuser>>({
-    url: '/account/login',
-    data
+      url: '/account/login',
+      data
   })
 }
 
@@ -32,8 +32,8 @@ export function login(data: Ilogin) {
  */
 export function changPwd(data: Ichange) {
   return httpService.post<Idata<Iuser>>({
-    url: '/account/forget',
-    data
+      url: '/account/forget',
+      data
   })
 }
 
@@ -42,8 +42,8 @@ export function changPwd(data: Ichange) {
  */
 export function getCode(data: Icode) {
   return httpService.post<Idata<any>>({
-    url: '/account/getcode',
-    data
+      url: '/account/getcode',
+      data
   })
 }
 
@@ -52,7 +52,7 @@ export function getCode(data: Icode) {
  */
 export function outLogin(data: IoutLoginRequest) {
   return httpService.post<Idata<any>>({
-    url: '/account/loginout',
-    data
+      url: '/account/loginout',
+      data
   })
 }

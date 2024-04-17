@@ -14,10 +14,10 @@ export function getDict(dict_type: number) {
 // 上传头像
 export function uploadAvatar(data: FormData) {
   return httpService.post<Idata<Iuser>>({
-    url: '/account/upload',
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    },
-    data
+      url: '/account/upload',
+      headers: {
+          'Content-Type': 'multipart/form-data'
+      },
+      data
   })
 }

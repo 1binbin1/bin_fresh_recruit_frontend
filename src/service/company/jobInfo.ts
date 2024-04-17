@@ -22,8 +22,8 @@ import type { FreshSendListAllRequest } from '@/service/company/type'
  */
 export function addJobInfo(data: AddJobRequest) {
   return httpService.post<Idata<JobInfoVo>>({
-    url: '/com/job/add',
-    data
+      url: '/com/job/add',
+      data
   })
 }
 
@@ -32,8 +32,8 @@ export function addJobInfo(data: AddJobRequest) {
  */
 export function updateJobInfo(data: UpdateJobRequest) {
   return httpService.post<Idata<JobInfoVo>>({
-    url: '/com/job/update',
-    data
+      url: '/com/job/update',
+      data
   })
 }
 
@@ -42,8 +42,8 @@ export function updateJobInfo(data: UpdateJobRequest) {
  */
 export function deleteJobInfo(data: DeleteJpbRequest) {
   return httpService.post<Idata<string>>({
-    url: '/com/job/delete',
-    data
+      url: '/com/job/delete',
+      data
   })
 }
 
@@ -52,8 +52,8 @@ export function deleteJobInfo(data: DeleteJpbRequest) {
  */
 export function listJobInfo(data: ListJobRequest) {
   return httpService.post<Idata<ListJobRequestVo>>({
-    url: '/com/job/list/company',
-    data
+      url: '/com/job/list/company',
+      data
   })
 }
 
@@ -62,8 +62,8 @@ export function listJobInfo(data: ListJobRequest) {
  */
 export function filrateResume(data: FilrateRequest) {
   return httpService.post<Idata<FilrateVo>>({
-    url: '/com/job/filrate',
-    data
+      url: '/com/job/filrate',
+      data
   })
 }
 
@@ -72,8 +72,8 @@ export function filrateResume(data: FilrateRequest) {
  */
 export function freshSendList(data: FreshSendListRequest) {
   return httpService.post<Idata<FreshSendListVo>>({
-    url: '/com/job/send',
-    data
+      url: '/com/job/send',
+      data
   })
 }
 
@@ -82,8 +82,8 @@ export function freshSendList(data: FreshSendListRequest) {
  */
 export function freshSendAllList(data: FreshSendListAllRequest) {
   return httpService.post<Idata<FreshSendListVo>>({
-    url: '/com/job/send',
-    data
+      url: '/com/job/send',
+      data
   })
 }
 
@@ -92,10 +92,10 @@ export function freshSendAllList(data: FreshSendListAllRequest) {
  */
 export function batchAddJob(data:FormData){
   return httpService.post<Idata<String>>({
-    url: '/com/job/batch/add',
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    },
-    data
+      url: '/com/job/batch/add',
+      headers: {
+          'Content-Type': 'multipart/form-data'
+      },
+      data
   })
 }
