@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import {defineEmits, ref} from 'vue'
 import {useAuthStore} from '@/stores/user/auth'
+import SliderVerifyCode from "@/components/base/slider-verify-code/src/slider-verify-code.vue";
+import {showMsg} from "@/utils/message";
 
 const store = useAuthStore()
 const {getCode: getC, userChangePwd, userLogin} = store
@@ -19,6 +21,11 @@ const keyDown = async (e) => {
 }
 
 const login = async () => {
+  if (!isLock.value){
+    tips.value = "请将滑块滑动到最右端"
+    showMsg("请将滑块滑动到最右端","error")
+    return
+  }
   let data = {}
   if (!isCode.value) {
     data = {
@@ -59,6 +66,11 @@ const loginByPassword = () => {
 let btndisabled = ref(false)
 let btnText = ref('发送验证码')
 const getCode = async () => {
+  if (!isLock.value){
+    tips.value = "请将滑块滑动到最右端"
+    showMsg("请将滑块滑动到最右端","error")
+    return
+  }
   // 发送验证码
   const data = {
     phone: phone.value,
@@ -89,6 +101,13 @@ const getCode = async () => {
     tips.value = '发送验证码失败，请联系管理员'
   }
 }
+
+// 滑块验证码
+const isLock = ref<Boolean>(false)
+const handlerLock = (data:any)=>{
+  isLock.value = data
+}
+
 </script>
 
 <template>
@@ -118,6 +137,7 @@ const getCode = async () => {
         }}
       </el-button>
     </div>
+    <SliderVerifyCode v-model="isLock" @change="handlerLock" style="width: 450px;margin-bottom: 20px"></SliderVerifyCode>
     <div class="tips">
       <el-text class="mx-1" size="large" type="warning">{{ tips }}</el-text>
       <div class="link">

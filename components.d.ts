@@ -86,6 +86,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Search: typeof import('./src/components/fresh/search/src/Search.vue')['default']
     SearchForm: typeof import('./src/components/SecondPackage/search-form/src/search-form.vue')['default']
+    SliderVerifyCode: typeof import('./src/components/base/slider-verify-code/src/slider-verify-code.vue')['default']
     Table: typeof import('./src/components/SecondPackage/content-table/src/Table.vue')['default']
     UserInfo: typeof import('./src/components/base/nav-header/src/cpns/userInfo.vue')['default']
   }
