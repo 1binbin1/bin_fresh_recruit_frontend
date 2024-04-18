@@ -72,22 +72,25 @@ const toLogin = () => {
         v-model="phone"
         style="width: 450px; height: 50px; margin-bottom: 20px"
         placeholder="请输入手机号或账号"
+        clearable
       />
       <el-input
         v-model="password"
         style="width: 450px; height: 50px; margin-bottom: 20px"
         type="password"
         placeholder="请输入密码"
+        clearable
       />
       <el-input
         v-model="check_password"
         style="width: 450px; height: 50px; margin-bottom: 20px"
         type="password"
         placeholder="请确认密码"
+        clearable
       />
       <div class="yanzheng">
-        <el-input v-model="code" style="width: 300px; height: 50px" placeholder="请输入验证码" />
-        <el-button style="width: 140px; height: 50px;margin-left: 10px" :disabled="btndisabled" @click="getCode">{{
+        <el-input v-model="code" style="width: 300px; height: 50px" placeholder="请输入验证码" clearable/>
+        <el-button style="width: 140px; height: 50px;margin-left: 10px" :disabled="btndisabled" @click="getCode" clearable>{{
           btnText
         }}</el-button>
       </div>

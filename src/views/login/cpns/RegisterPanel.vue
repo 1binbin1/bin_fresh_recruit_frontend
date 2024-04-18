@@ -27,19 +27,19 @@ const register = async () => {
     <el-input
       v-model="phone"
       style="width: 450px; height: 50px; margin-bottom: 30px"
-      placeholder="请输入手机号"
+      placeholder="请输入手机号" clearable
     />
     <el-input
       v-model="password"
       style="width: 450px; height: 50px; margin-bottom: 30px"
       type="password"
-      placeholder="请输入密码"
+      placeholder="请输入密码" clearable
     />
     <el-input
       v-model="check_password"
       style="width: 450px; height: 50px; margin-bottom: 20px"
       type="password"
-      placeholder="请再次输入密码"
+      placeholder="请再次输入密码" clearable
     />
     <div class="tips">
       <el-text class="mx-1" size="large" type="warning">{{ tips }}</el-text>

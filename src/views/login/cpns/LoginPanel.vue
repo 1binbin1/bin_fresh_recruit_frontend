@@ -116,22 +116,22 @@ const handlerLock = (data:any)=>{
         v-model="phone"
         style="width: 450px; height: 50px; margin-bottom: 30px"
         placeholder="请输入手机号或账号"
-        v-if="!isCode"
+        v-if="!isCode" clearable
     />
     <el-input v-if="!isCode"
               v-model="password"
               style="width: 450px; height: 50px; margin-bottom: 20px"
               placeholder="请输入密码"
-              type="password"
+              type="password" clearable
     />
     <el-input
         v-model="phone"
         style="width: 450px; height: 50px; margin-bottom: 30px"
         placeholder="请输入手机号"
-        v-if="isCode"
+        v-if="isCode" clearable
     />
     <div class="yanzheng" v-if="isCode" style="margin-bottom: 20px">
-      <el-input v-model="code" style="width: 300px; height: 50px" placeholder="请输入验证码"/>
+      <el-input v-model="code" style="width: 300px; height: 50px" placeholder="请输入验证码" clearable/>
       <el-button style="width: 140px; height: 50px;margin-left: 10px" :disabled="btndisabled" @click="getCode">{{
           btnText
         }}
