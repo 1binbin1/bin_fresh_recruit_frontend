@@ -50,6 +50,10 @@ export default {
     textColor: { //滑块的文字颜色
       type: [String],
       default: "#777"
+    },
+    sliderBackgroundColor: {
+      type: [String],
+      default: "#00a6a7"
     }
   },
   watch: {
@@ -130,7 +134,7 @@ export default {
             text.innerHTML = '验证成功';
             text.style.color = '#fff';
             slider.innerHTML = '<i class="el-icon-success"></i>';
-            slider.style.color = '#53C300';
+            slider.style.color =  this.sliderBackgroundColor;
             //2.设置滑动成功后的状态
             success = this.activeValue;
             //成功后，清除掉鼠标按下事件和移动事件（因为移动时并不会涉及到鼠标松开事件）
@@ -188,7 +192,7 @@ export default {
             text.innerHTML = '验证成功';
             text.style.color = '#fff';
             slider.innerHTML = '&radic;';
-            slider.style.color = '#53C300';
+            slider.style.color = this.sliderBackgroundColor;
             //2.设置滑动成功后的状态
             success = this.activeValue;
             //成功后，清除掉鼠标按下事件和移动事件（因为移动时并不会涉及到鼠标松开事件）
@@ -260,7 +264,7 @@ export default {
   width: 2.5rem;
   height: 100%;
   position: absolute;
-  background-color: #53C300;
+  background-color: #00a6a7;
   border-radius: 3px 0 0 3px;
 }
 
