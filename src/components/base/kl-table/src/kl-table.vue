@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {} from 'vue'
-import type { IpropList } from '..'
+import type {IpropList} from '..'
 // props
 defineProps({
   isShowIndex: {
@@ -16,7 +16,7 @@ defineProps({
     default: ''
   },
   propList: {
-    type: Array<IpropList>,
+    type: Array < IpropList >,
     required: true
   },
   tableData: {
@@ -60,9 +60,9 @@ const pageChange = (value: number) => {
                 highlight-current-row
                 empty-text="暂无数据"
                 show-overflow-tooltip
-                :tooltip-options="{ effect:'light',placement:'bottom', showArrow: true, width: '80px'  }" >
-        <el-table-column align="center" type="selection" width="55" v-if="isShowSelect" />
-        <el-table-column align="center" type="index" width="55" v-if="isShowIndex" />
+                :tooltip-options="{ effect:'light',placement:'bottom', showArrow: true, width: '80px'  }">
+        <el-table-column align="center" type="selection" width="55" v-if="isShowSelect"/>
+        <el-table-column align="center" type="index" width="55" v-if="isShowIndex"/>
         <template v-for="prop in propList" :key="prop.field">
           <el-table-column v-bind="prop" align="center">
             <template #default="scope">
@@ -77,12 +77,13 @@ const pageChange = (value: number) => {
     <div class="footer">
       <!-- 后面用来放分页器 -->
       <el-pagination
-        background
-        layout="prev, pager, next"
-        :total="total"
-        :page-size="pageSize"
-        @current-change="pageChange"
-        :current-page="currentPage"
+          background
+          layout="prev, pager, next,jumper,total"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="pageChange"
+          :current-page="currentPage"
+          hide-on-single-page
       />
     </div>
   </div>
@@ -99,6 +100,7 @@ const pageChange = (value: number) => {
   background-color: #fff;
   padding: 0 30px;
 }
+
 .footer {
   background-color: #fff;
   padding: 10px;

@@ -27,7 +27,7 @@ const register = async () => {
     <el-input
       v-model="phone"
       style="width: 450px; height: 50px; margin-bottom: 30px"
-      placeholder="请输入手机号或账号"
+      placeholder="请输入手机号"
     />
     <el-input
       v-model="password"

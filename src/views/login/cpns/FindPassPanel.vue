@@ -87,7 +87,7 @@ const toLogin = () => {
       />
       <div class="yanzheng">
         <el-input v-model="code" style="width: 300px; height: 50px" placeholder="请输入验证码" />
-        <el-button style="width: 150px; height: 50px" :disabled="btndisabled" @click="getCode">{{
+        <el-button style="width: 140px; height: 50px;margin-left: 10px" :disabled="btndisabled" @click="getCode">{{
           btnText
         }}</el-button>
       </div>
