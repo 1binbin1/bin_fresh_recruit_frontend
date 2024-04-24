@@ -1,15 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useAuthStore } from '@/stores/user/auth'
-import { storeToRefs } from 'pinia'
+import {ref} from 'vue'
+import {useAuthStore} from '@/stores/user/auth'
+import {storeToRefs} from 'pinia'
 import router from '@/router'
+import ChangeTheme from "@/components/ThemeSetting/change-theme/src/change-theme.vue";
+import ChatWindow from "@/components/SecondPackage/chat-window";
 
 const activeIndex = ref<number>(0)
-const handleSelect = () => {}
+const handleSelect = () => {
+}
 
 const store = useAuthStore()
-const { outLoginReq } = store
-const { roleData, userInfo } = storeToRefs(store)
+const {outLoginReq} = store
+const {roleData, userInfo} = storeToRefs(store)
 
 const forgetPassword = () => {
   // 忘记密码
@@ -25,20 +28,26 @@ const out = async () => {
 const toHome = () => {
   router.push('/fresh/main')
 }
+
+const changeThemeModal = ref<InstanceType<typeof ChangeTheme>>()
+// 主题切换打开
+const openColor = () => {
+  changeThemeModal.value!.getVisible()
+}
 </script>
 
 <template>
   <div class="header">
     <el-menu
-      :default-active="activeIndex"
-      class="el-menu no-caret"
-      mode="horizontal"
-      :ellipsis="false"
-      @select="handleSelect"
-      :router="true"
+        :default-active="activeIndex"
+        class="el-menu no-caret"
+        mode="horizontal"
+        :ellipsis="false"
+        @select="handleSelect"
+        :router="true"
     >
       <div class="logo" @click="toHome">
-        <img src="@/assets/image/logo.png" />
+        <img src="@/assets/image/logo.png"/>
         <div class="name">校招通</div>
       </div>
       <el-menu-item index="/fresh/search">岗位筛选</el-menu-item>
@@ -48,17 +57,19 @@ const toHome = () => {
       <el-menu-item index="/login">企业登录</el-menu-item>
       <el-sub-menu>
         <template #title
-          ><span class="span">{{ userInfo?.user_name ?? '请完善用户名' }}</span></template
+        ><span class="span">{{ userInfo?.user_name ?? '请完善用户名' }}</span></template
         >
         <el-menu-item index="/fresh/freshInfoResult">个人中心</el-menu-item>
+        <el-menu-item @click="openColor">主题切换</el-menu-item>
         <el-menu-item @click="forgetPassword">重置密码</el-menu-item>
         <el-menu-item @click="out">退出登录</el-menu-item>
       </el-sub-menu>
       <div class="imgContain">
-        <img class="avatar" :src="userInfo?.a_avatar" alt="" />
+        <img class="avatar" :src="userInfo?.a_avatar" alt=""/>
       </div>
     </el-menu>
   </div>
+  <ChangeTheme ref="changeThemeModal"></ChangeTheme>
 </template>
 
 <style lang="scss" scoped>
