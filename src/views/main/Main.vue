@@ -41,7 +41,7 @@ const changeCollapse = (isFold: boolean) => {
   height: 100%;
 }
 .el-aside {
-  background-color: #00a6a7;
+  background-color: var(--theme-color);
   transition: width 0.3s linear;
   overflow-x: hidden;
   overflow-y: hidden;

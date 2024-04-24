@@ -70,7 +70,7 @@ const toHome = () => {
   display: flex;
   // justify-content: center;
   align-items: center;
-  background-color: rgb(0, 166, 167);
+  background-color: var(--theme-color);
   color: #fff;
 }
 
@@ -100,7 +100,7 @@ img {
 
 :deep(.el-menu--horizontal .el-menu-item:not(.is-disabled):hover),
 :deep(.el-menu--horizontal > .el-sub-menu .el-sub-menu__title:hover) {
-  background-color: rgb(0, 133, 134);
+  background-color: var(--theme-active-color);
   color: #fff;
 }
 
@@ -116,7 +116,7 @@ img {
     .el-menu--horizontal .el-menu-item:not(.is-disabled):focus,
     .el-menu--horizontal .el-menu-item:not(.is-disabled):hover
   ) {
-  background-color: rgb(0, 133, 134);
+  background-color: var(--theme-active-color);
   color: #fff;
 }
 

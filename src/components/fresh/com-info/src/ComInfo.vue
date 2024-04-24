@@ -185,11 +185,11 @@ p {
   height: 40px;
   font-size: 16px;
   letter-spacing: 2px;
-  color: #00a6a7;
+  color: var(--theme-color);
   font-weight: bolder;
   background-color: #fff;
   border-radius: 10px;
-  border: 2px solid #00a6a7;
+  border: 2px solid var(--theme-color);
 }
 
 :deep(.el-button:hover) {

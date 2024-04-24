@@ -98,7 +98,7 @@ const openSecond = () => {
 }
 
 .top-right {
-  background-color: #00a6a7;
+  background-color: var(--theme-color);
   color: #fff !important;
   border-radius: 0 8px 0 0;
 }

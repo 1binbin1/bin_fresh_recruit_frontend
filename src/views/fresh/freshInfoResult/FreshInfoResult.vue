@@ -87,7 +87,7 @@ const openSecond = () => {
   font-weight: bolder;
 }
 .top-left {
-  background-color: #00a6a7;
+  background-color: var(--theme-color);
   color: #fff !important;
   border-radius: 8px 0 0 0;
 }

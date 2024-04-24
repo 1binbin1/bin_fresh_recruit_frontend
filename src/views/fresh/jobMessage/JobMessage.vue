@@ -73,7 +73,7 @@ const changePage = async (data: number) => {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-left: 10px solid #00a6a7;
+  border-left: 10px solid var(--theme-color);
 }
 
 .message-top span {

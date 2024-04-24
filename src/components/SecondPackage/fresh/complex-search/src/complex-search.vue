@@ -86,7 +86,7 @@ const searchFn = () => {
             icon="Search"
             class="searchButton"
             style="
-              background-color: #00a6a7;
+              background-color: var(--theme-color);
               height: 100%;
               border-radius: 0;
               width: 80px;
@@ -163,7 +163,7 @@ const searchFn = () => {
 }
 
 .city .title {
-  color: #00a6a7;
+  color: var(--theme-color);
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 17px;
@@ -173,7 +173,7 @@ const searchFn = () => {
 .city .line {
   width: 60px;
   height: 3px;
-  background-color: #00a6a7;
+  background-color: var(--theme-color);
   margin-top: 4px;
   margin-bottom: 4px;
 }
@@ -185,7 +185,7 @@ const searchFn = () => {
 }
 
 .cityList span:hover {
-  color: #00a6a7;
+  color: var(--theme-color);
 }
 
 .select {
@@ -209,7 +209,7 @@ const searchFn = () => {
   flex-direction: row;
   align-items: center;
   width: 90%;
-  border: 2px solid #00a6a7;
+  border: 2px solid var(--theme-color);
   margin-top: 20px;
 }
 

@@ -235,7 +235,7 @@ const getBrow = (index: number) => {
         <div class="list" v-for="item in chatList" :key="item">
           <div class="chat-list-right" v-if="item?.user_type === 2">
             <div class="right-content">
-              <div class="content" style="background-color: #00a6a7" v-if="item?.chat_type === 0">{{
+              <div class="content" style="background-color: var(--theme-color)" v-if="item?.chat_type === 0">{{
                   item?.chat_content
                 }}
               </div>
@@ -285,7 +285,7 @@ const getBrow = (index: number) => {
         <div class="list" v-for="item in chatList" :key="item">
           <div class="chat-list-right" v-if="item?.user_type === 1">
             <div class="right-content">
-              <div class="content" style="background-color: #00a6a7" v-if="item?.chat_type === 0">{{
+              <div class="content" style="background-color: var(--theme-color)" v-if="item?.chat_type === 0">{{
                   item?.chat_content
                 }}
               </div>
@@ -416,7 +416,7 @@ const getBrow = (index: number) => {
   border-radius: 8px 8px 0 0;
   height: 80px;
   width: 100%;
-  background-color: #00a6a7;
+  background-color: var(--theme-color);
   display: flex;
   flex-direction: row;
   align-items: center;

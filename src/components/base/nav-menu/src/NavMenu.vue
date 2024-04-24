@@ -22,7 +22,7 @@ const toUrl = (url: any) => {
     <div class="menu">
       <el-menu
         active-text-color="#ffd04b"
-        background-color="#00a6a7"
+        background-color="var(--theme-color)"
         class="el-menu-vertical-demo"
         default-active="0"
         text-color="#fff"
@@ -73,6 +73,9 @@ const toUrl = (url: any) => {
   height: 70px;
 }
 .el-menu-item.is-active {
-  background-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: var(--theme-active-color) !important;
+}
+:deep(.el-menu-item:hover){
+  background-color: var(--theme-active-color) !important;
 }
 </style>

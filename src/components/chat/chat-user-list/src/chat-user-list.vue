@@ -56,7 +56,7 @@ const changeStyle = (data: any) => {
 
 <style lang="scss" scoped>
 .active {
-  background-color: #00a6a7;
+  background-color: var(--theme-color);
   color: #fff;
   font-weight: bolder;
   transform: scale(1.03);

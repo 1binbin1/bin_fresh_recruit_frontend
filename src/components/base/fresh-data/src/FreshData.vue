@@ -39,7 +39,7 @@ onMounted(async () => {
   line-height: 100px;
   font-size: 28px;
   font-weight: 700;
-  color: #00a6a7;
+  color: var(--theme-color);
 }
 
 ::v-deep .el-card__body {

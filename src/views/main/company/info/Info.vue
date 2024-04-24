@@ -135,7 +135,7 @@ const update = async (data: any) => {
 }
 
 .username {
-  color: #00a6a7;
+  color: var(--theme-color);
   font-size: 30px;
   font-weight: bold;
   margin-left: 20px;

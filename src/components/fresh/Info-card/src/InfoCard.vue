@@ -117,8 +117,8 @@ const showChatWindow = async () => {
     <div class="bottom">
       <span class="left">
         <el-button @click="showChatWindow"
-                   style="background-color: #00a6a7;border: none;border-radius: 10px;height: 35px;width: 110px;color: #fff;font-weight: bolder;letter-spacing: 2px;font-size: 16px">立即沟通</el-button>
-        <el-button style="margin-left: 20px;background-color: #00a6a7;border: none;border-radius: 10px;height: 35px;width: 110px;color: #fff;font-weight: bolder;letter-spacing: 2px;font-size: 16px" v-if="isJob" @click="showResumeModal"
+                   style="background-color: var(--theme-color);border: none;border-radius: 10px;height: 35px;width: 110px;color: #fff;font-weight: bolder;letter-spacing: 2px;font-size: 16px">立即沟通</el-button>
+        <el-button style="margin-left: 20px;background-color: var(--theme-color);border: none;border-radius: 10px;height: 35px;width: 110px;color: #fff;font-weight: bolder;letter-spacing: 2px;font-size: 16px" v-if="isJob" @click="showResumeModal"
         >立即投递</el-button
         >
       </span>
@@ -202,7 +202,7 @@ const showChatWindow = async () => {
   justify-content: center;
   align-items: center;
   letter-spacing: 2px;
-  color: #00a6a7;
+  color: var(--theme-color);
   font-weight: bolder;
   font-size: 20px;
   cursor: pointer;

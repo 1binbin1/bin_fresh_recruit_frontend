@@ -96,7 +96,7 @@ const showChatWindow = async (data: any) => {
           </div>
           <div class="info-right">
             <el-button @click="showChatWindow(item)"
-                       style="background-color: #00a6a7;border: none;border-radius: 10px;height: 35px;width: 110px;color: #fff;font-weight: bolder;letter-spacing: 2px;font-size: 16px;">
+                       style="background-color: var(--theme-color);border: none;border-radius: 10px;height: 35px;width: 110px;color: #fff;font-weight: bolder;letter-spacing: 2px;font-size: 16px;">
               立即沟通
             </el-button>
           </div>

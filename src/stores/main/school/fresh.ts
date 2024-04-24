@@ -16,6 +16,7 @@ import {
 } from '@/service/school/fresh'
 import {showMsg} from '@/utils/message'
 import type {MapDataArray} from "@/service/school/type";
+import localCache from "@/utils/localCache";
 
 export const useFreshStore = defineStore('fresh', () => {
     const freshList = ref()
@@ -82,8 +83,10 @@ export const useFreshStore = defineStore('fresh', () => {
 
     // 获取数据范围
     const countRes = ref<string[]>()
-    const getCount = async () => {
-        const res = await getFreshOutCountHttp()
+    const getCount = async (data: string) => {
+        const res = await getFreshOutCountHttp({
+            school_id: data
+        })
         if (res.code === 0) {
             countRes.value = res.data
         }
@@ -93,7 +96,7 @@ export const useFreshStore = defineStore('fresh', () => {
     let dicts = []
     const selectNum = ref<string>("")
     const getMap = async () => {
-        await getCount()
+        await getCount(localCache.getCache('userId'))
         mapData.value = []
         dicts = []
         countRes.value.forEach((item, index) => {
@@ -116,6 +119,6 @@ export const useFreshStore = defineStore('fresh', () => {
         changeCurrent,
         addFresh,
         deleteFreshData,
-        getFreshRateData, outFreshData, countRes, getCount,getMap,mapData,selectNum
+        getFreshRateData, outFreshData, countRes, getCount, getMap, mapData, selectNum
     }
 })

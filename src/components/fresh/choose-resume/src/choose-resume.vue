@@ -56,9 +56,9 @@ const openResume = (data: string) => {
         <el-radio-group
           v-model="resumeData"
           class="group"
-          text-color="#00a6a7"
+          text-color="var(--theme-color)"
           size="large"
-          fill="#00a6a7"
+          fill="var(--theme-color)"
         >
           <el-radio :value="item.resume_id" v-for="item in resumeList" :key="item">
             <div class="name">{{ item.resume_name }}</div>
@@ -145,13 +145,13 @@ const openResume = (data: string) => {
   cursor: pointer;
   font-size: 16px;
   letter-spacing: 4px;
-  border: 2px solid #00a6a7;
+  border: 2px solid var(--theme-color);
   border-radius: 8px;
 }
 
 .out-button button:hover,
 .inner-button button:hover {
-  background-color: #00a6a7;
+  background-color: var(--theme-color);
   color: #fff;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
 }

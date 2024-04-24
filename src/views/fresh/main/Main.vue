@@ -158,7 +158,7 @@ const clickJobType = (data: any) => {
 }
 
 .leftUi:hover {
-  background-color: #00a6a7;
+  background-color: var(--theme-color);
   color: #fff;
   cursor: pointer;
   border-radius: 6px;
@@ -177,14 +177,14 @@ const clickJobType = (data: any) => {
   align-content: center;
 }
 .recommend {
-  color: #00a6a7;
+  color: var(--theme-color);
   font-size: 28px;
   font-weight: bold;
 }
 .line {
   width: 100%;
   height: 4px;
-  background-color: #00a6a7;
+  background-color: var(--theme-color);
   margin-top: 10px;
 }
 </style>

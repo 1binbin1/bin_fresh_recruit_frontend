@@ -76,7 +76,7 @@ const pageSend = async () => {
       :current-page="reqData.current"
     >
       <template #sendState="scope">
-        <span v-if="scope.row['send_state'] === 0" style="color: #00a6a7">已投递</span>
+        <span v-if="scope.row['send_state'] === 0" style="color: var(--theme-color)">已投递</span>
         <span v-if="scope.row['send_state'] === 1">被查看</span>
         <span v-if="scope.row['send_state'] === 2">邀约面试</span>
         <span v-if="scope.row['send_state'] === 3">初筛不通过</span>

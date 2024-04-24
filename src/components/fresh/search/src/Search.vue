@@ -47,7 +47,7 @@ const input = ref()
           icon="Search"
           class="searchButton"
           style="
-            background-color: #00a6a7;
+            background-color: var(--theme-color);
             height: 100%;
             border-radius: 0;
             width: 80px;
@@ -70,7 +70,7 @@ const input = ref()
   flex-direction: row;
   align-items: center;
   width: 60%;
-  border: 2px solid #00a6a7;
+  border: 2px solid var(--theme-color);
 }
 
 :deep(.el-select__wrapper) {

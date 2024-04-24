@@ -1,6 +1,7 @@
 // import './assets/main.css'
 import 'normalize.css'
 import '@/assets/style/index.scss'
+import '@/assets/global.css'
 // element样式缺失
 import 'element-plus/theme-chalk/el-loading.css'
 import 'element-plus/theme-chalk/el-message.css'

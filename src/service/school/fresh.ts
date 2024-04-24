@@ -78,8 +78,9 @@ export function getOutFreshDataHttp(data: OutFreshDataRequest) {
 /**
  * @description: 数量范围
  */
-export function getFreshOutCountHttp() {
+export function getFreshOutCountHttp(data:any) {
     return httpService.get<Idata<string[]>>({
-        url: '/school/data/count'
+        url: '/school/data/count',
+        params: data
     })
 }

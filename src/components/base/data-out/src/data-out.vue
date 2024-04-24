@@ -11,8 +11,8 @@ const {getdict} = store
 const {dictData} = storeToRefs(store)
 
 const freshSendStore = useFreshStore()
-const {getCount,getMap} = freshSendStore
-const {countRes,mapData,selectNum} = storeToRefs(freshSendStore)
+const {getCount, getMap} = freshSendStore
+const {countRes, mapData, selectNum} = storeToRefs(freshSendStore)
 
 const dialogVisible = ref(false)
 defineExpose({
@@ -25,7 +25,7 @@ const emits = defineEmits(['batchOut'])
 const selectData = ref([])
 // const selectNum = ref("")
 const batchAddFn = () => {
-  emits('batchOut', selectData.value,selectNum.value)
+  emits('batchOut', selectData.value, selectNum.value)
 }
 const cancel = () => {
   dialogVisible.value = false
