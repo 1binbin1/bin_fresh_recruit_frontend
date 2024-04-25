@@ -29,17 +29,6 @@ export const useCommonStore = defineStore('common', () => {
 
 
     // ======颜色======
-    // 主题颜色
-    const themeColor = ref('rgb(0, 166, 167)')
-    const themeActiveColor = ref('rgb(0, 166, 167)')
-    const changeColor = (type: number, data: string) => {
-        if (type === 1) {
-            themeColor.value = data
-        }
-        if (type === 2) {
-            themeActiveColor.value = data
-        }
-    }
     const themeResult = ref<ThemeSettingVo>()
     const saveTheme = async (data: SaveThemeRequest) => {
         const res = await saveThemeHttp(data)
@@ -60,9 +49,6 @@ export const useCommonStore = defineStore('common', () => {
         dictData,
         getdict,
         uploadVo,
-        upload,
-        themeColor,
-        themeActiveColor,
-        changeColor,themeResult,saveTheme,getTheme
+        upload,themeResult,saveTheme,getTheme
     }
 })

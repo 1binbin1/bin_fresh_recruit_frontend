@@ -6,8 +6,8 @@ import {storeToRefs} from "pinia";
 import localCache from "@/utils/localCache";
 
 const store = useCommonStore()
-const {changeColor, saveTheme, getTheme} = store
-const {themeColor, themeActiveColor, themeResult} = storeToRefs(store)
+const {saveTheme, getTheme} = store
+const {themeResult} = storeToRefs(store)
 
 const dialogVisible = ref(false)
 defineExpose({
@@ -19,11 +19,15 @@ const cancel = () => {
   dialogVisible.value = false
 }
 
+const themeColor = ref('')
+const themeActiveColor = ref('')
 onMounted(async () => {
   // 加载颜色
   await getTheme(localCache.getCache('userId'))
   document.documentElement.style.setProperty('--theme-color', themeResult.value.ts_theme_color)
   document.documentElement.style.setProperty('--theme-active-color', themeResult.value.ts_theme_active_color)
+  themeColor.value = themeResult.value.ts_theme_color
+  themeActiveColor.value = themeResult.value.ts_theme_active_color
 })
 
 const predefineColors = ref([
@@ -82,7 +86,7 @@ const changeTheme = async (data: number, type: number) => {
             <el-descriptions-item label="导航栏选中">
               <el-color-picker v-model="themeActiveColor" show-alpha :predefine="predefineColors" size="large"
                                color-format="hsl" @change="changeTheme(2,1)"/>
-              <el-link class="link" @click="changeTheme(1,2)" :underline="false">恢复默认</el-link>
+              <el-link class="link" @click="changeTheme(2,2)" :underline="false">恢复默认</el-link>
             </el-descriptions-item>
           </el-descriptions>
         </div>

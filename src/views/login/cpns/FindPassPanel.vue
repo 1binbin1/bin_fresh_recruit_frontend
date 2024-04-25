@@ -117,7 +117,7 @@ const toLogin = () => {
 <style lang="scss" scoped>
 .header {
   font-size: 20px;
-  border-bottom: solid 3px var(--theme-color);
+  border-bottom: solid 3px rgb(0,166,167);
   height: 40px;
   text-align: center;
   font-weight: 500;
@@ -149,7 +149,7 @@ const toLogin = () => {
     .el-button {
       width: 100%;
       height: 50px;
-      background-color: var(--theme-color)
+      background-color:rgb(0,166,167);
     }
   }
 }

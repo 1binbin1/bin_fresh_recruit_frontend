@@ -86,7 +86,7 @@ const register = async () => {
     .el-button {
       width: 100%;
       height: 50px;
-      background-color: var(--theme-color)
+      background-color: rgb(0,166,167);
     }
   }
 }

@@ -53,7 +53,7 @@ export default {
     },
     sliderBackgroundColor: {
       type: [String],
-      default: "var(--theme-color)"
+      default: "rgb(0,166,167)"
     }
   },
   watch: {
@@ -264,7 +264,7 @@ export default {
   width: 2.5rem;
   height: 100%;
   position: absolute;
-  background-color: var(--theme-color);
+  background-color: rgb(0,166,167);
   border-radius: 3px 0 0 3px;
 }
 

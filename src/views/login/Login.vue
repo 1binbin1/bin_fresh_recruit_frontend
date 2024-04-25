@@ -22,7 +22,7 @@ const noFind = () => {
         <div class="items">
           <div class="item">
             <div class="item-left">
-              <el-icon color="var(--theme-color)">
+              <el-icon color="rgb(0,166,167)">
                 <Notebook/>
               </el-icon>
             </div>
@@ -145,11 +145,11 @@ const noFind = () => {
 
         .item:first-child {
           .item-left {
-            //background-color: var(--theme-color)
+            //background-color: rgb(0,166,167)
           }
 
           .item-right {
-            color: var(--theme-color)
+            color: rgb(0,166,167)
           }
         }
       }
@@ -167,7 +167,7 @@ const noFind = () => {
         .panel-header {
           // 修改tab样式
           :deep(.el-tabs__item.is-active) {
-            color: var(--theme-color)
+            color: rgb(0,166,167)
           }
 
           :deep(.el-tabs__item) {
@@ -176,11 +176,11 @@ const noFind = () => {
           }
 
           :deep(.el-tabs__active-bar) {
-            background-color: var(--theme-color)
+            background-color: rgb(0,166,167)
           }
 
           :deep(.el-tabs__item:hover) {
-            color: var(--theme-color)
+            color: rgb(0,166,167)
           }
         }
       }
