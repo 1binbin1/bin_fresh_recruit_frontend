@@ -1,8 +1,15 @@
 <script setup lang="ts">
 // 可视化
-import {defineExpose, ref} from "vue";
+import {defineExpose, onMounted, ref} from "vue";
+import {useCommonStore} from "@/stores/common/common";
+import {storeToRefs} from "pinia";
+import localCache from "@/utils/localCache";
 
-const dialogVisible = ref(true)
+const store = useCommonStore()
+const {changeColor, saveTheme, getTheme} = store
+const {themeColor, themeActiveColor, themeResult} = storeToRefs(store)
+
+const dialogVisible = ref(false)
 defineExpose({
   getVisible() {
     dialogVisible.value = true
@@ -11,6 +18,13 @@ defineExpose({
 const cancel = () => {
   dialogVisible.value = false
 }
+
+onMounted(async () => {
+  // 加载颜色
+  await getTheme(localCache.getCache('userId'))
+  document.documentElement.style.setProperty('--theme-color', themeResult.value.ts_theme_color)
+  document.documentElement.style.setProperty('--theme-active-color', themeResult.value.ts_theme_active_color)
+})
 
 const predefineColors = ref([
   '#ff4500',
@@ -29,25 +43,28 @@ const predefineColors = ref([
   '#c7158577',
 ])
 // 主题颜色
-const themeColor = ref('rgb(0, 166, 167)')
-const changeTheme = () => {
-  document.documentElement.style.setProperty('--theme-color',themeColor.value)
-}
-const toDefaultTheme = ()=>{
-  const color = 'rgb(0, 166, 167)'
-  themeColor.value = color
-  document.documentElement.style.setProperty('--theme-color',color)
-}
+const changeTheme = async (data: number, type: number) => {
+  if (data === 1) {
+    const color = (type === 1 ? themeColor.value : 'rgb(0, 166, 167)')
+    await saveTheme({
+      a_id: localCache.getCache('userId'),
+      theme_type: 1,
+      color: color,
+    })
+    document.documentElement.style.setProperty('--theme-color', themeResult.value.ts_theme_color)
+    themeColor.value = color
+  }
 
-// 导航栏被选中
-const themeActiveColor = ref('rgb(0, 166, 167)')
-const changeThemeActive = () => {
-  document.documentElement.style.setProperty('--theme-active-color',themeActiveColor.value)
-}
-const toDefaultThemeActive = ()=>{
-  const color = 'rgb(0, 133, 134)'
-  themeActiveColor.value = color
-  document.documentElement.style.setProperty('--theme-color',color)
+  if (data === 2) {
+    const color = (type === 1 ? themeActiveColor.value : 'rgb(0, 133, 134)')
+    await saveTheme({
+      a_id: localCache.getCache('userId'),
+      theme_type: 2,
+      color: color,
+    })
+    document.documentElement.style.setProperty('--theme-active-color', themeResult.value.ts_theme_active_color)
+    themeActiveColor.value = color
+  }
 }
 </script>
 
@@ -59,19 +76,15 @@ const toDefaultThemeActive = ()=>{
           <el-descriptions class="item">
             <el-descriptions-item label="主题色">
               <el-color-picker v-model="themeColor" show-alpha :predefine="predefineColors" size="large"
-                               color-format="hsl" @change="changeTheme"/>
-              <el-link class="link" @click="toDefaultTheme" :underline="false">恢复默认</el-link>
+                               color-format="hsl" @change="changeTheme(1,1)"/>
+              <el-link class="link" @click="changeTheme(1,2)" :underline="false">恢复默认</el-link>
             </el-descriptions-item>
             <el-descriptions-item label="导航栏选中">
               <el-color-picker v-model="themeActiveColor" show-alpha :predefine="predefineColors" size="large"
-                               color-format="hsl" @change="changeThemeActive"/>
-              <el-link class="link" @click="toDefaultThemeActive" :underline="false">恢复默认</el-link>
+                               color-format="hsl" @change="changeTheme(2,1)"/>
+              <el-link class="link" @click="changeTheme(1,2)" :underline="false">恢复默认</el-link>
             </el-descriptions-item>
           </el-descriptions>
-        </div>
-        <div class="content-bottom">
-          <el-button class="cancel" @click="cancel">取消</el-button>
-          <el-button class="confirm" type="success">确定</el-button>
         </div>
       </div>
     </el-dialog>
@@ -79,22 +92,6 @@ const toDefaultThemeActive = ()=>{
 </template>
 
 <style lang="scss" scoped>
-.content-bottom {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 15px;
-}
-
-.cancel {
-  margin-right: 20px;
-}
-
-.cancel, .confirm {
-  width: 20%;
-  height: 38px;
-}
-
 .content-center {
   font-size: 16px;
   display: flex;
@@ -106,7 +103,8 @@ const toDefaultThemeActive = ()=>{
 .content-center .item {
   margin: 10px 0;
 }
-.link{
+
+.link {
   margin-left: 15px;
 }
 </style>

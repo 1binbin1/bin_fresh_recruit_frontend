@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import {} from 'vue'
+import {ref} from 'vue'
 import router from '@/router'
 import { useAuthStore } from '@/stores/user/auth'
 import { storeToRefs } from 'pinia'
+import ChangeTheme from "@/components/ThemeSetting/change-theme/src/change-theme.vue";
 
 const store = useAuthStore()
 const { outLoginReq } = store
@@ -18,6 +19,12 @@ const out = async () => {
   await outLoginReq({
     role: roleData.value
   })
+}
+
+const changeThemeModal = ref<InstanceType<typeof ChangeTheme>>()
+// 主题切换打开
+const openColor = () => {
+  changeThemeModal.value!.getVisible()
 }
 </script>
 
@@ -35,12 +42,14 @@ const out = async () => {
       </span>
       <template #dropdown>
         <el-dropdown-menu>
+          <el-dropdown-item icon="Edit" @click="openColor">主题切换</el-dropdown-item>
           <el-dropdown-item icon="User" @click="forgetPassword">重置密码</el-dropdown-item>
           <el-dropdown-item icon="CloseBold" @click="out">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
   </div>
+  <ChangeTheme ref="changeThemeModal"></ChangeTheme>
 </template>
 
 <style lang="scss" scoped>
