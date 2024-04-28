@@ -3,6 +3,7 @@ import {getDict, getIpCityHttp, getIpHttp, getThemeHttp, saveThemeHttp, uploadAv
 import {ref} from 'vue'
 import {showMsg} from '@/utils/message'
 import type {IpVo, SaveThemeRequest, ThemeSettingVo} from "@/service/common/type";
+import localCache from "@/utils/localCache";
 
 export const useCommonStore = defineStore('common', () => {
     const dictData = ref()
@@ -51,6 +52,7 @@ export const useCommonStore = defineStore('common', () => {
         const res = await getIpHttp()
         if (res.code === 0) {
             cityInfo.value = res.data
+            localCache.setCache("cityInfo",cityInfo.value)
         }
     }
     const getIpCity = async (ip: string) => {
@@ -59,6 +61,7 @@ export const useCommonStore = defineStore('common', () => {
         })
         if (res.code === 0) {
             cityInfo.value = res.data
+            localCache.setCache("cityInfo",cityInfo.value)
         }
     }
     return {

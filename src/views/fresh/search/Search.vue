@@ -46,5 +46,6 @@ const getJobListByPage = async (page: Number) => {
   align-items: center;
   justify-content: center;
   padding-top: 40px;
+  width: 100%;
 }
 </style>
