@@ -5,7 +5,7 @@ import {storeToRefs} from 'pinia'
 import router from '@/router'
 import ChangeTheme from "@/components/ThemeSetting/change-theme/src/change-theme.vue";
 import ChatWindow from "@/components/SecondPackage/chat-window";
-
+import {useCommonStore} from "@/stores/common/common";
 const activeIndex = ref<number>(0)
 const handleSelect = () => {
 }
@@ -13,6 +13,10 @@ const handleSelect = () => {
 const store = useAuthStore()
 const {outLoginReq} = store
 const {roleData, userInfo} = storeToRefs(store)
+
+const commonStore = useCommonStore()
+const {getIp, getIpCity} = commonStore
+const {cityInfo} = storeToRefs(commonStore)
 
 const forgetPassword = () => {
   // 忘记密码
@@ -54,6 +58,7 @@ const openColor = () => {
       <el-menu-item index="/fresh/jobMessage">就业资讯</el-menu-item>
       <el-menu-item index="/fresh/chat">在线沟通</el-menu-item>
       <div class="flex-grow"></div>
+      <div class="location" v-if="cityInfo.address"><el-icon><Location /></el-icon><span style="margin-left: 5px">{{cityInfo.address}}</span></div>
       <el-menu-item index="/login">企业登录</el-menu-item>
       <el-sub-menu>
         <template #title
@@ -73,6 +78,13 @@ const openColor = () => {
 </template>
 
 <style lang="scss" scoped>
+.location{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-size: 14px;
+  margin-right: 10px;
+}
 .header {
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }

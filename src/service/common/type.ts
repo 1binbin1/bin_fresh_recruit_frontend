@@ -14,3 +14,15 @@ export interface GetThemeRequest {
     a_id: string
 }
 
+export interface IpVo {
+    ip_address: string
+    country: string
+    province: string
+    city: string
+    address: string
+    city_info: string
+}
+
+export interface GetIpCityRequest{
+    ip:string
+}

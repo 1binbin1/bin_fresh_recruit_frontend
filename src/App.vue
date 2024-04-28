@@ -1,6 +1,18 @@
 <script setup lang="ts">
 import {RouterView} from 'vue-router'
 import Bottom from '@/components/base/bottom/Bottom.vue'
+import {onMounted} from "vue";
+import {useCommonStore} from "@/stores/common/common";
+import {storeToRefs} from "pinia";
+
+const store = useCommonStore()
+const {getIp, getIpCity} = store
+const {cityInfo} = storeToRefs(store)
+// 获取IP和城市
+onMounted(async () => {
+  await getIp()
+})
+
 </script>
 
 <template>

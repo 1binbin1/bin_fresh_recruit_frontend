@@ -1,8 +1,8 @@
 import {defineStore} from 'pinia'
-import {getDict, getThemeHttp, saveThemeHttp, uploadAvatar} from '@/service/common/common'
+import {getDict, getIpCityHttp, getIpHttp, getThemeHttp, saveThemeHttp, uploadAvatar} from '@/service/common/common'
 import {ref} from 'vue'
 import {showMsg} from '@/utils/message'
-import type {SaveThemeRequest, ThemeSettingVo} from "@/service/common/type";
+import type {IpVo, SaveThemeRequest, ThemeSettingVo} from "@/service/common/type";
 
 export const useCommonStore = defineStore('common', () => {
     const dictData = ref()
@@ -45,10 +45,26 @@ export const useCommonStore = defineStore('common', () => {
         }
     }
 
+    // 获取IP和城市
+    const cityInfo = ref<IpVo>()
+    const getIp = async () => {
+        const res = await getIpHttp()
+        if (res.code === 0) {
+            cityInfo.value = res.data
+        }
+    }
+    const getIpCity = async (ip: string) => {
+        const res = await getIpCityHttp({
+            ip
+        })
+        if (res.code === 0) {
+            cityInfo.value = res.data
+        }
+    }
     return {
         dictData,
         getdict,
         uploadVo,
-        upload,themeResult,saveTheme,getTheme
+        upload, themeResult, saveTheme, getTheme, cityInfo, getIp, getIpCity
     }
 })

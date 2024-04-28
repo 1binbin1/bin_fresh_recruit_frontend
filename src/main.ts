@@ -33,8 +33,6 @@ app.use(router)
 app.use(globalRegeist)
 app.use(directiveImagePreviewer.components.install)
 app.directive('directiveImagePreviewer', directiveImagePreviewer.directive.vDirectiveImagePreviewer)
-// 记得删除
-console.log('这里开始')
 
 // 注册所有图标
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

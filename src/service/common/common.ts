@@ -2,6 +2,8 @@ import httpService from '@/service'
 import type {Idata} from '@/service/type'
 import type {Iuser} from '@/service/user/type'
 import type {GetThemeRequest, SaveThemeRequest, ThemeSettingVo} from "@/service/common/type";
+import type {IpVo} from "@/service/common/type";
+import type {GetIpCityRequest} from "@/service/common/type";
 
 export function getDict(dict_type: number) {
     return httpService.get<Idata<String[]>>({
@@ -36,6 +38,23 @@ export function saveThemeHttp(data: SaveThemeRequest) {
 export function getThemeHttp(data: GetThemeRequest) {
     return httpService.get<Idata<ThemeSettingVo>>({
         url: '/theme/get',
+        params: data,
+        showLoading: false
+    })
+}
+
+// 获取IP地址
+export function getIpHttp() {
+    return httpService.get<Idata<IpVo>>({
+        url: '/ip/get',
+        showLoading: false
+    })
+}
+
+// 根据IP地址获取城市
+export function getIpCityHttp(data: GetIpCityRequest) {
+    return httpService.get<Idata<IpVo>>({
+        url: '/ip/get/city',
         params: data,
         showLoading: false
     })
