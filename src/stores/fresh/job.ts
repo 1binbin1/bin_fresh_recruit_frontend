@@ -53,7 +53,7 @@ export const useJobStore = defineStore('freshJob', () => {
         searchContent.value.com_num = data.com_num
         if (data.com_address === '全国') {
             searchContent.value.com_address = ''
-        }else if (data.com_address === '当前城市'){
+        }else if (data.com_address === '当前所在城市'){
             searchContent.value.com_address = localCache.getCache("cityInfo").city
         }else {
             searchContent.value.com_address = data.com_address
