@@ -21,9 +21,9 @@ const keyDown = async (e) => {
 }
 
 const login = async () => {
-  if (!isLock.value){
+  if (!isLock.value) {
     tips.value = "请将滑块滑动到最右端"
-    showMsg("请将滑块滑动到最右端","error")
+    showMsg("请将滑块滑动到最右端", "error")
     return
   }
   let data = {}
@@ -32,7 +32,8 @@ const login = async () => {
       login_type: 0,
       phone: phone.value,
       password: password.value,
-      role: role.value
+      role: role.value,
+      isFilterLately: 1
     }
   }
   if (isCode.value) {
@@ -40,7 +41,8 @@ const login = async () => {
       login_type: 1,
       phone: phone.value,
       code: code.value,
-      role: role.value
+      role: role.value,
+      isFilterLately: 1
     }
   }
   tips.value = await userLogin(data)
@@ -66,9 +68,9 @@ const loginByPassword = () => {
 let btndisabled = ref(false)
 let btnText = ref('发送验证码')
 const getCode = async () => {
-  if (!isLock.value){
+  if (!isLock.value) {
     tips.value = "请将滑块滑动到最右端"
-    showMsg("请将滑块滑动到最右端","error")
+    showMsg("请将滑块滑动到最右端", "error")
     return
   }
   // 发送验证码
@@ -104,7 +106,7 @@ const getCode = async () => {
 
 // 滑块验证码
 const isLock = ref<Boolean>(false)
-const handlerLock = (data:any)=>{
+const handlerLock = (data: any) => {
   isLock.value = data
 }
 
@@ -137,7 +139,8 @@ const handlerLock = (data:any)=>{
         }}
       </el-button>
     </div>
-    <SliderVerifyCode v-model="isLock" @change="handlerLock" style="width: 450px;margin-bottom: 20px"></SliderVerifyCode>
+    <SliderVerifyCode v-model="isLock" @change="handlerLock"
+                      style="width: 450px;margin-bottom: 20px"></SliderVerifyCode>
     <div class="tips">
       <el-text class="mx-1" size="large" type="warning">{{ tips }}</el-text>
       <div class="link">
@@ -157,7 +160,8 @@ const handlerLock = (data:any)=>{
       </el-radio-group>
     </div>
     <div class="btn">
-      <el-button type="primary" size="large" auto-insert-space @click="login"  @keydown.enter="keyDown($event)">确认登录</el-button>
+      <el-button type="primary" size="large" auto-insert-space @click="login" @keydown.enter="keyDown($event)">确认登录
+      </el-button>
     </div>
   </div>
 </template>
@@ -196,7 +200,7 @@ const handlerLock = (data:any)=>{
     .el-button {
       width: 100%;
       height: 50px;
-      background-color: rgb(0,166,167);
+      background-color: rgb(0, 166, 167);
     }
   }
 }

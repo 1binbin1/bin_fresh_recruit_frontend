@@ -6,6 +6,8 @@ import router from '@/router'
 import ChangeTheme from "@/components/ThemeSetting/change-theme/src/change-theme.vue";
 import ChatWindow from "@/components/SecondPackage/chat-window";
 import {useCommonStore} from "@/stores/common/common";
+import LoginRecordWindow from "@/components/SecondPackage/login-record-window/src/login-record-window.vue";
+
 const activeIndex = ref<number>(0)
 const handleSelect = () => {
 }
@@ -38,6 +40,12 @@ const changeThemeModal = ref<InstanceType<typeof ChangeTheme>>()
 const openColor = () => {
   changeThemeModal.value!.getVisible()
 }
+
+// 登录记录
+const loginRecordWindowRef = ref<InstanceType<typeof LoginRecordWindow>>()
+const openLoginInfo = () => {
+  loginRecordWindowRef.value!.getVisible()
+}
 </script>
 
 <template>
@@ -58,7 +66,11 @@ const openColor = () => {
       <el-menu-item index="/fresh/jobMessage">就业资讯</el-menu-item>
       <el-menu-item index="/fresh/chat">在线沟通</el-menu-item>
       <div class="flex-grow"></div>
-      <div class="location" v-if="cityInfo.address"><el-icon><Location /></el-icon><span style="margin-left: 5px">{{cityInfo.address}}</span></div>
+      <div class="location" v-if="cityInfo.address">
+        <el-icon>
+          <Location/>
+        </el-icon>
+        <span style="margin-left: 5px">{{ cityInfo.address }}</span></div>
       <el-menu-item index="/login">企业登录</el-menu-item>
       <el-sub-menu>
         <template #title
@@ -66,6 +78,7 @@ const openColor = () => {
         >
         <el-menu-item index="/fresh/freshInfoResult">个人中心</el-menu-item>
         <el-menu-item @click="openColor">主题切换</el-menu-item>
+        <el-menu-item @click="openLoginInfo">登录记录</el-menu-item>
         <el-menu-item @click="forgetPassword">重置密码</el-menu-item>
         <el-menu-item @click="out">退出登录</el-menu-item>
       </el-sub-menu>
@@ -75,16 +88,18 @@ const openColor = () => {
     </el-menu>
   </div>
   <ChangeTheme ref="changeThemeModal"></ChangeTheme>
+  <LoginRecordWindow ref="loginRecordWindowRef"></LoginRecordWindow>
 </template>
 
 <style lang="scss" scoped>
-.location{
+.location {
   display: flex;
   justify-content: center;
   align-content: center;
   font-size: 14px;
   margin-right: 10px;
 }
+
 .header {
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }

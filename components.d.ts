@@ -79,6 +79,8 @@ declare module 'vue' {
     JobCard: typeof import('./src/components/fresh/job-card/src/JobCard.vue')['default']
     JobPurpose: typeof import('./src/components/fresh/job-purpose/src/job-purpose.vue')['default']
     KlTable: typeof import('./src/components/base/kl-table/src/kl-table.vue')['default']
+    LoginRecord: typeof import('./src/components/login-record/src/login-record.vue')['default']
+    LoginRecordWindow: typeof import('./src/components/SecondPackage/login-record-window/src/login-record-window.vue')['default']
     ModalForm: typeof import('./src/components/SecondPackage/modal-form/src/modal-form.vue')['default']
     NavHeader: typeof import('./src/components/base/nav-header/src/nav-header.vue')['default']
     NavMenu: typeof import('./src/components/base/nav-menu/src/NavMenu.vue')['default']

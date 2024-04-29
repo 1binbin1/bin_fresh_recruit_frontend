@@ -23,6 +23,33 @@ export interface IpVo {
     city_info: string
 }
 
-export interface GetIpCityRequest{
-    ip:string
+export interface GetIpCityRequest {
+    ip: string
+}
+
+// 获取登录信息相关
+export interface GetLoginInfoRequest {
+    a_id: string
+    current: number
+    page_size: number
+}
+
+export interface GetLoginInfoVo {
+    a_id: string
+    score: number
+    list: LoginInfoVo[]
+    total: number
+    current: number
+    page_size: number
+}
+
+export interface LoginInfoVo {
+    a_id: string
+    login_ip: string
+    login_address: string
+    login_country: string
+    login_province: string
+    login_city: string
+    login_device: string
+    create_time: string
 }

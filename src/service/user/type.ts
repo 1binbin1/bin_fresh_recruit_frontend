@@ -22,6 +22,7 @@ export interface Ilogin {
     password: string
     role: number
     code: string
+    isFilterLately?: number
 }
 
 // 修改密码需要的信息

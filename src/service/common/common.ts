@@ -1,9 +1,10 @@
 import httpService from '@/service'
 import type {Idata} from '@/service/type'
 import type {Iuser} from '@/service/user/type'
-import type {GetThemeRequest, SaveThemeRequest, ThemeSettingVo} from "@/service/common/type";
+import type {GetLoginInfoRequest, GetThemeRequest, SaveThemeRequest, ThemeSettingVo} from "@/service/common/type";
 import type {IpVo} from "@/service/common/type";
 import type {GetIpCityRequest} from "@/service/common/type";
+import type {GetLoginInfoVo} from "@/service/common/type";
 
 export function getDict(dict_type: number) {
     return httpService.get<Idata<String[]>>({
@@ -57,5 +58,13 @@ export function getIpCityHttp(data: GetIpCityRequest) {
         url: '/ip/get/city',
         params: data,
         showLoading: false
+    })
+}
+
+// 获取登录信息
+export function getLoginInfoHttp(data: GetLoginInfoRequest) {
+    return httpService.get<Idata<GetLoginInfoVo>>({
+        url: '/ip/getLogin',
+        params: data,
     })
 }

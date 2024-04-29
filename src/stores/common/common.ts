@@ -1,9 +1,18 @@
 import {defineStore} from 'pinia'
-import {getDict, getIpCityHttp, getIpHttp, getThemeHttp, saveThemeHttp, uploadAvatar} from '@/service/common/common'
+import {
+    getDict,
+    getIpCityHttp,
+    getIpHttp,
+    getLoginInfoHttp,
+    getThemeHttp,
+    saveThemeHttp,
+    uploadAvatar
+} from '@/service/common/common'
 import {ref} from 'vue'
 import {showMsg} from '@/utils/message'
 import type {IpVo, SaveThemeRequest, ThemeSettingVo} from "@/service/common/type";
 import localCache from "@/utils/localCache";
+import type {GetLoginInfoRequest, LoginInfoVo} from "@/service/common/type";
 
 export const useCommonStore = defineStore('common', () => {
     const dictData = ref()
@@ -52,7 +61,7 @@ export const useCommonStore = defineStore('common', () => {
         const res = await getIpHttp()
         if (res.code === 0) {
             cityInfo.value = res.data
-            localCache.setCache("cityInfo",cityInfo.value)
+            localCache.setCache("cityInfo", cityInfo.value)
         }
     }
     const getIpCity = async (ip: string) => {
@@ -61,13 +70,47 @@ export const useCommonStore = defineStore('common', () => {
         })
         if (res.code === 0) {
             cityInfo.value = res.data
-            localCache.setCache("cityInfo",cityInfo.value)
+            localCache.setCache("cityInfo", cityInfo.value)
         }
+    }
+
+    // 分页获取登录信息
+    const score = ref<number>(0)
+    const total = ref(0)
+    const pageSize = ref(0)
+    const list = ref<LoginInfoVo[]>()
+    const getLoginInfoData = ref<GetLoginInfoRequest>({
+        a_id: "",
+        current: 1,
+        page_size: 10,
+    })
+    const getLoginInfoByPage = async (data: string) => {
+        getLoginInfoData.value.a_id = data
+        const res = await getLoginInfoHttp(getLoginInfoData.value)
+        if (res.code === 0) {
+            list.value = res.data.list
+            score.value = res.data.score
+            total.value = res.data.total
+            pageSize.value = res.data.page_size
+        }
+    }
+    const changeCurrent = async (current: number) => {
+        getLoginInfoData.value.current = current
+    }
+    const getReqData = () => {
+        return getLoginInfoData.value.current
     }
     return {
         dictData,
         getdict,
         uploadVo,
-        upload, themeResult, saveTheme, getTheme, cityInfo, getIp, getIpCity
+        upload,
+        themeResult,
+        saveTheme,
+        getTheme,
+        cityInfo,
+        getIp,
+        getIpCity,
+        score, total, pageSize, list, getLoginInfoByPage, changeCurrent, getLoginInfoData, getReqData
     }
 })
