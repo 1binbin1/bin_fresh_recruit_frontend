@@ -64,7 +64,7 @@ const getColor = () => {
 <template>
   <div class="com-record">
     <div class="top">
-      <span style="font-weight: bolder;margin-top: 10px;font-size: 18px">当前账号等级：<span :style="colorStyle">{{
+      <span style="font-weight: bolder;margin-top: 10px;font-size: 18px">当前账号安全等级：<span :style="colorStyle">{{
           grade
         }}</span></span>
       <span class="warning" style="margin-bottom: 5px;margin-top: 5px"><el-icon style="margin-right: 5px"><Warning/></el-icon>只展示近90天的数据，且一天内重复登录将不记录</span>
