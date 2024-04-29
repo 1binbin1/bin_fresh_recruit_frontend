@@ -48,10 +48,10 @@ const getColor = () => {
     color.value = "green"
   } else if (score.value >= 80) {
     grade.value = "较高"
-    color.value = "orange"
+    color.value = "#ffa02a"
   } else if (score.value >= 60) {
     grade.value = "较低"
-    color.value = "yellow"
+    color.value = "#a9a982"
   } else {
     grade.value = "风险高"
     color.value = "red"
