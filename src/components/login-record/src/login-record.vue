@@ -69,7 +69,7 @@ const getColor = () => {
         }}</span></span>
       <span class="warning" style="margin-bottom: 5px;margin-top: 5px"><el-icon style="margin-right: 5px"><Warning/></el-icon>只展示近90天的数据，且一天内重复登录将不记录</span>
       <span class="warning" style="margin-bottom: 10px"><el-icon style="margin-right: 5px"><Warning/></el-icon>当前IP为：{{
-          cityInfo.address
+          cityInfo.ip_address
         }}，将以该IP为依据判断账号安全等级</span>
     </div>
     <div class="bottom">

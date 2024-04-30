@@ -32,8 +32,7 @@ const login = async () => {
       login_type: 0,
       phone: phone.value,
       password: password.value,
-      role: role.value,
-      isFilterLately: 1
+      role: role.value
     }
   }
   if (isCode.value) {
@@ -41,8 +40,7 @@ const login = async () => {
       login_type: 1,
       phone: phone.value,
       code: code.value,
-      role: role.value,
-      isFilterLately: 1
+      role: role.value
     }
   }
   tips.value = await userLogin(data)
