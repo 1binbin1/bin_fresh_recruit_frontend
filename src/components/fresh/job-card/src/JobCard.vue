@@ -104,12 +104,13 @@ const showChatWindow = async (data: any) => {
     <!-- 后面用来放分页器 -->
     <el-pagination
         background
-        layout="prev, pager, next"
+        layout="prev, pager, next,jumper,total"
         :total="total"
         :page-size="pageSize"
         @current-change="pageChange"
         :current-page="currentPage"
         v-if="isPage"
+        hide-on-single-page
     />
   </div>
 </template>

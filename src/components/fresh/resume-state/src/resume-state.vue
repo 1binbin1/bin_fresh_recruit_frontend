@@ -107,11 +107,12 @@ const showChatWindow = async (data: any) => {
     <div class="state-bottom">
       <el-pagination
           background
-          layout="prev,pager,next"
+          layout="prev, pager, next,jumper,total"
           :total="total"
           :page-size="pageSize"
           @current-change="pageChange"
           :current-page="current"
+          hide-on-single-page
       ></el-pagination>
     </div>
     <ChatWindow ref="chatWindowModal" :chatList="chatList" :userInfo="comInfo"></ChatWindow>

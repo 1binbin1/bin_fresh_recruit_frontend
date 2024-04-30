@@ -43,11 +43,12 @@ const changePage = async (data: number) => {
       <div class="page">
         <el-pagination
           background
-          layout="prev, pager, next"
+          layout="prev, pager, next,jumper,total"
           :total="total"
           :page-size="pageSize"
           @current-change="changePage"
           :current-page="current"
+          hide-on-single-page
         />
       </div>
     </div>
