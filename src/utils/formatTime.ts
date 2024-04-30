@@ -4,7 +4,7 @@ import utc from 'dayjs/plugin/utc'
 dayjs.extend(utc)
 
 export function formatUTC(time: string, format: string = FORMAT_DATA) {
-    return dayjs.utc(time).utcOffset(8).format(format) // 东八区
+    return dayjs.utc(time).utcOffset(0).format(format) // 东八区
 }
 
 // 保留日期，去掉时间

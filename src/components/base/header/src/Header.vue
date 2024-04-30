@@ -66,7 +66,7 @@ const openLoginInfo = () => {
       <el-menu-item index="/fresh/jobMessage">就业资讯</el-menu-item>
       <el-menu-item index="/fresh/chat">在线沟通</el-menu-item>
       <div class="flex-grow"></div>
-      <div class="location" v-if="cityInfo.address">
+      <div class="location" v-if="cityInfo">
         <el-icon>
           <Location/>
         </el-icon>

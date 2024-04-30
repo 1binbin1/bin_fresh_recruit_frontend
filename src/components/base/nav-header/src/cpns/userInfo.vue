@@ -40,7 +40,7 @@ const openColor = () => {
         </div>
         <div class="contain">
           <div class="username">{{ userInfo?.user_name }}</div>
-          <div class="location" v-if="cityInfo.address">
+          <div class="location" v-if="cityInfo">
             <el-icon>
               <Location/>
             </el-icon>
