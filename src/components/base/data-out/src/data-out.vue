@@ -12,7 +12,7 @@ const {dictData} = storeToRefs(store)
 
 const freshSendStore = useFreshStore()
 const {getCount, getMap} = freshSendStore
-const {countRes, mapData, selectNum} = storeToRefs(freshSendStore)
+const {countRes, mapData} = storeToRefs(freshSendStore)
 
 const dialogVisible = ref(false)
 defineExpose({
@@ -23,8 +23,12 @@ defineExpose({
 const emits = defineEmits(['batchOut'])
 // 数据导出
 const selectData = ref([])
-// const selectNum = ref("")
+const selectNum = ref("")
 const batchAddFn = () => {
+  if (selectData.value === undefined || selectData.value === '' || selectNum.value === undefined || selectNum.value === '') {
+    showMsg("请选择投递状态或数量范围", "error")
+    return
+  }
   emits('batchOut', selectData.value, selectNum.value)
 }
 const cancel = () => {
