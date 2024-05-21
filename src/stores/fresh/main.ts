@@ -9,7 +9,7 @@ import { showMsg } from '@/utils/message'
 export const useMainStore = defineStore('freshMain', () => {
   const recommendResult = ref()
   const reqData = ref<GetRecommendListRequest>({
-    limit: Math.floor(Math.random() * (24 - 18 + 1)) + 18,
+    limit: Math.floor(Math.random() * (12 - 9 + 1)) + 9,
     is_recommend: 1 // 0-否 1-是
   })
   // 推荐的岗位
